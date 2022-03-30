@@ -1,3 +1,4 @@
 *.class
 .DS_Store
 **/.vscode/settings.json
+Sliding Window/.vscode/extensions.json
