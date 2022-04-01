@@ -1,8 +1,8 @@
 import java.util.HashMap;
 
 public class FruitBasket {
-    // O(N) time | O(K) space
-    // N is the length of the string and K is the dinstinct chars
+    // O(N) time | O(1) space
+    // N is the length of the string
     public static int findLength(char[] tree) {
         // base checks
         if (tree.length == 0 || tree.length < 2) {
