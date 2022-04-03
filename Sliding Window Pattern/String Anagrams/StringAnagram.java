@@ -1,74 +1,70 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-public class StringPermutation {
+public class StringAnagram {
     // O(N+M) time | O(M) space
     // where N is the length of the string and M is the length of the pattern
-    public static boolean findPermutation(String str, String pattern) {
+    public static List<Integer> findStringAnagrams(String str, String pattern) {
         // base checks
-        if (str.length() == 0 || pattern.length() == 0 || str.length() < pattern.length()) {
-            return false;
+        int n = str.length();
+        int m = pattern.length();
+        if (n == 0 || m == 0 || n < m) {
+            throw new IllegalArgumentException();
         }
 
         HashMap<Character, Integer> charFrequencyMap = new HashMap<>();
+        List<Integer> indexes = new ArrayList<Integer>();
         int windowStart = 0, matched = 0;
 
-        // add pattern chars to hash map
         for (char c : pattern.toCharArray()) {
             charFrequencyMap.put(c, charFrequencyMap.getOrDefault(c, 0) + 1);
         }
 
-        // iterate through the string and check if each char in the string
-        // is in the pattern
-        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
+        for (int windowEnd = 0; windowEnd < n; windowEnd++) {
             char rightChar = str.charAt(windowEnd);
-            // check if the char is in the pattern, remove the count
-            // if the count is zero, there is a char match
+
             if (charFrequencyMap.containsKey(rightChar)) {
                 charFrequencyMap.put(rightChar, charFrequencyMap.get(rightChar) - 1);
 
-                // char match found
                 if (charFrequencyMap.get(rightChar) == 0) {
                     matched++;
                 }
             }
 
-            // if matched is equal to the pattern length, match found
+            // Anagram match found
             if (matched == charFrequencyMap.size()) {
-                return true;
+                // add the starting index of the anagram to the list
+                indexes.add(windowStart);
             }
 
-            // if window size is greater than the pattern length, shrink the window
-            if (windowEnd >= pattern.length() - 1) {
+            if (windowEnd >= m - 1) {
                 char leftChar = str.charAt(windowStart);
                 windowStart++;
 
-                // if the char being removed is in the pattern, put it back
-                // Also, if the count is already zero, decrement matched
                 if (charFrequencyMap.containsKey(leftChar)) {
-
-                    // decrement the matched count
                     if (charFrequencyMap.get(leftChar) == 0) {
                         matched--;
                     }
 
-                    // put the char back
                     charFrequencyMap.put(leftChar, charFrequencyMap.get(leftChar) + 1);
                 }
             }
         }
 
-        return false;
+        return indexes;
     }
 
     // O(N) time | O(1) space
     // where N is the length of the string
-    public static boolean findPermutationOptimized(String str, String pattern) {
+    public static List<Integer> findStringAnagramsOptimized(String str, String pattern) {
         // base checks
         if (str.length() == 0 || pattern.length() == 0 || str.length() < pattern.length()) {
-            return false;
+            throw new IllegalArgumentException();
         }
 
         int[] charFrequencyMap = new int[26];
+        List<Integer> indexes = new ArrayList<Integer>();
         int matched = pattern.length(), windowStart = 0, windowEnd = 0;
 
         // add pattern chars to array
@@ -89,7 +85,7 @@ public class StringPermutation {
 
             // match found
             if (matched == 0) {
-                return true;
+                indexes.add(windowStart);
             }
 
             // increase the window size until it matches pattern length
@@ -104,29 +100,18 @@ public class StringPermutation {
                 charFrequencyMap[str.charAt(windowStart) - 'a']++;
                 windowStart++;
             }
-
         }
 
-        return false;
+        return indexes;
     }
 
     public static void main(String[] args) {
-        System.out.println("Permutation exist: "
-                + StringPermutation.findPermutation("oidbcaf", "abc"));
-        System.out.println("Permutation exist: "
-                + StringPermutation.findPermutation("odicf", "dc"));
-        System.out.println("Permutation exist: "
-                + StringPermutation.findPermutation("bcdxabcdy", "bcdyabcdx"));
-        System.out.println("Permutation exist: "
-                + StringPermutation.findPermutation("aaacb", "abc"));
+        System.out.println(StringAnagram.findStringAnagrams("ppqp", "pq"));
+        System.out.println(StringAnagram.findStringAnagrams("abbcabc", "abc"));
+        System.out.println(StringAnagram.findStringAnagrams("abbabaab", "ab"));
 
-        System.out.println("Permutation exist: "
-                + StringPermutation.findPermutationOptimized("oidbcaf", "abc"));
-        System.out.println("Permutation exist: "
-                + StringPermutation.findPermutationOptimized("odicf", "dc"));
-        System.out.println("Permutation exist: "
-                + StringPermutation.findPermutationOptimized("bcdxabcdy", "bcdyabcdx"));
-        System.out.println("Permutation exist: "
-                + StringPermutation.findPermutationOptimized("aaacb", "abc"));
+        System.out.println(StringAnagram.findStringAnagramsOptimized("ppqp", "pq"));
+        System.out.println(StringAnagram.findStringAnagramsOptimized("abbcabc", "abc"));
+        System.out.println(StringAnagram.findStringAnagramsOptimized("abbabaab", "ab"));
     }
 }
