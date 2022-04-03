@@ -108,10 +108,10 @@ public class StringAnagram {
     public static void main(String[] args) {
         System.out.println(StringAnagram.findStringAnagrams("ppqp", "pq"));
         System.out.println(StringAnagram.findStringAnagrams("abbcabc", "abc"));
-        System.out.println(StringAnagram.findStringAnagrams("abbabaab", "ab"));
+        System.out.println(StringAnagram.findStringAnagrams("abbabaab", "xy"));
 
         System.out.println(StringAnagram.findStringAnagramsOptimized("ppqp", "pq"));
         System.out.println(StringAnagram.findStringAnagramsOptimized("abbcabc", "abc"));
-        System.out.println(StringAnagram.findStringAnagramsOptimized("abbabaab", "ab"));
+        System.out.println(StringAnagram.findStringAnagramsOptimized("abbabaab", "xy"));
     }
 }
