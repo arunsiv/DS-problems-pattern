@@ -1,7 +1,8 @@
 import java.util.HashMap;
 
 public class StringPermutation {
-    //
+    // O(N*M) time | O(M) space
+    // where N is the length of the string and M is the length of the pattern
     public static boolean findPermutation(String str, String pattern) {
         // base checks
         if (str.length() == 0 || pattern.length() == 0 || str.length() < pattern.length()) {
@@ -16,7 +17,7 @@ public class StringPermutation {
             charFrequencyMap.put(c, charFrequencyMap.getOrDefault(c, 0) + 1);
         }
 
-        // iterate throught the string and check if each char in the string
+        // iterate through the string and check if each char in the string
         // is in the pattern
         for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
             char rightChar = str.charAt(windowEnd);
@@ -33,7 +34,6 @@ public class StringPermutation {
 
             // if matched is equal to the pattern length, match found
             if (matched == charFrequencyMap.size()) {
-                System.out.println("matched: " + matched);
                 return true;
             }
 
@@ -57,7 +57,47 @@ public class StringPermutation {
             }
         }
 
-        System.out.println("matched: " + matched);
+        return false;
+    }
+
+    // O(N) time | O(1) space
+    // where N is the length of the string
+    public static boolean findPermutationOptimized(String str, String pattern) {
+        // base checks
+        if (str.length() == 0 || pattern.length() == 0 || str.length() < pattern.length()) {
+            return false;
+        }
+
+        int[] charFrequencyMap = new int[26];
+        int matched = pattern.length(), windowStart = 0, windowEnd = 0;
+
+        // add pattern chars to array
+        for (char c : pattern.toCharArray()) {
+            charFrequencyMap[c - 'a']++;
+        }
+
+        // iterate through the string and check if each char in the string
+        // is in the pattern
+        while (windowEnd < str.length()) {
+            //check if the char count is 0, char match is found 
+            if (charFrequencyMap[str.charAt(windowEnd++) - 'a']-- > 0) {
+                matched--;
+            }
+
+            //match found
+            if (matched == 0) {
+                return true;
+            }
+
+            //increase the window size until it matches pattern length
+            //and then remove the left char
+            //if the left char is in the pattern, add it back in the array and increase the matched
+            if (windowEnd - windowStart == pattern.length()
+                    && charFrequencyMap[str.charAt(windowStart++) - 'a']++ >= 0) {
+                        matched++;
+            }
+        }
+
         return false;
     }
 
@@ -70,5 +110,14 @@ public class StringPermutation {
                 + StringPermutation.findPermutation("bcdxabcdy", "bcdyabcdx"));
         System.out.println("Permutation exist: "
                 + StringPermutation.findPermutation("aaacb", "abc"));
+
+        System.out.println("Permutation exist: "
+                + StringPermutation.findPermutationOptimized("oidbcaf", "abc"));
+        System.out.println("Permutation exist: "
+                + StringPermutation.findPermutationOptimized("odicf", "dc"));
+        System.out.println("Permutation exist: "
+                + StringPermutation.findPermutationOptimized("bcdxabcdy", "bcdyabcdx"));
+        System.out.println("Permutation exist: "
+                + StringPermutation.findPermutationOptimized("aaacb", "abc"));
     }
 }
