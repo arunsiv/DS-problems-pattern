@@ -3,7 +3,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ThreeSum {
-    // O(N^2) time | O()
+    // O(N^2) time | O(N) space (ignoring output)
+    // where N is the length of the input array
+    // time: O(NlogN) for array sorting and O(N^2) for finding the triplets
+    // space: O(N) for sorting
     public static List<List<Integer>> searchTriplets(int[] nums) {
         // base checks
         if (nums.length < 3) {
@@ -20,7 +23,7 @@ public class ThreeSum {
             if (nums[i] > 0) {
                 break;
             }
-            
+
             // check for duplicates and skip the iteration if there are duplicates
             if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
                 int left = i + 1, right = n - 1, sum = 0 - nums[i];
