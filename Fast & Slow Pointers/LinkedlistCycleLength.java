@@ -27,14 +27,14 @@ public class LinkedlistCycleLength {
 
             if (fastPointer == slowPointer) {
                 System.out.println(slowPointer.value);
-                return calculateLinkedlinstCyclelength(slowPointer);
+                return calculateLinkedlistCyclelength(slowPointer);
             }
         }
 
         return 0;
     }
 
-    private static int calculateLinkedlinstCyclelength(ListNode slowPointer) {
+    private static int calculateLinkedlistCyclelength(ListNode slowPointer) {
         ListNode currentPointer = slowPointer;
         int cycleLength = 0;
 
