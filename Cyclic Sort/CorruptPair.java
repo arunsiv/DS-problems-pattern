@@ -1,5 +1,8 @@
 public class CorruptPair {
-    //
+    // O(n) time | O(1) space
+    // where n is the length of the array
+    // time: O(n)+O(n−1)+O(n) i.e. O(n) for while loop, O(n-1) for swapping and O(n)
+    // for for loop    
     public static int[] findNumbers(int[] nums) {
         // base checks
         if (nums == null || nums.length == 0) {
