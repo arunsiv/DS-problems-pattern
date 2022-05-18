@@ -13,7 +13,7 @@ public class ReverseLinkedList {
     public static ListNode reverse(ListNode head) {
         // base checks
         if (head == null) {
-            return null;
+            return head;
         }
 
         ListNode current = head; // current node that we will be processing
