@@ -104,15 +104,6 @@ public class ReverseSubLinkedList {
         return dummy.next;
     }
 
-    private static void printLinkedList(ListNode head) {
-        System.out.println("-----");
-        while (head != null) {
-            System.out.print(head.value + "->");
-            head = head.next;
-        }
-        System.out.println("-----");
-    }
-
     public static void main(String[] args) {
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
