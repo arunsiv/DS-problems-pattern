@@ -8,6 +8,8 @@ class ListNode {
 }
 
 public class RotateLinkedList {
+    // O(N) time | O(1) space
+    // where N is the number of nodes in the linked list
     public static ListNode rotate(ListNode head, int k) {
         if (head == null || head.next == null || k <= 0) {
             return head;
@@ -46,6 +48,8 @@ public class RotateLinkedList {
         return head;
     }
 
+    // O(N) time | O(1) space
+    // where N is the number of nodes in the linked list
     public static ListNode rotateII(ListNode head, int k) {
         if (head == null) {
             return head;
