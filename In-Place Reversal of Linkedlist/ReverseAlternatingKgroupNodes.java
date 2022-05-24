@@ -183,7 +183,7 @@ public class ReverseAlternatingKgroupNodes {
         head.next.next.next.next.next.next = new ListNode(7);
         head.next.next.next.next.next.next.next = new ListNode(8);
 
-        ListNode result = ReverseAlternatingKgroupNodes.reverse(head, 5);
+        ListNode result = ReverseAlternatingKgroupNodes.reverse(head, 2);
         System.out.print("Nodes of the reversed LinkedList are: ");
         while (result != null) {
             System.out.print(result.value + "->");
@@ -200,7 +200,7 @@ public class ReverseAlternatingKgroupNodes {
         head.next.next.next.next.next.next = new ListNode(7);
         head.next.next.next.next.next.next.next = new ListNode(8);
 
-        result = ReverseAlternatingKgroupNodes.reverseKGroup(head, 5);
+        result = ReverseAlternatingKgroupNodes.reverseKGroup(head, 2);
         System.out.print("Nodes of the reversed LinkedList are: ");
         while (result != null) {
             System.out.print(result.value + "->");
@@ -217,7 +217,7 @@ public class ReverseAlternatingKgroupNodes {
         head.next.next.next.next.next.next = new ListNode(7);
         head.next.next.next.next.next.next.next = new ListNode(8);
 
-        result = ReverseAlternatingKgroupNodes.reverseKGroupII(head, 5);
+        result = ReverseAlternatingKgroupNodes.reverseKGroupII(head, 2);
         System.out.print("Nodes of the reversed LinkedList are: ");
         while (result != null) {
             System.out.print(result.value + "->");
