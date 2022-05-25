@@ -13,13 +13,13 @@ class TreeNode {
     }
 };
 
-//LC#102
-public class BTLevelOrderTraversal {
+//LC#107
+public class BTReverseLevelOrderTraversal {
     // O(N) time | O(N) space
     // N is the number of nodes in the tree
     // space: O(N) for result & O(N) for queue => O(N)
     public static List<List<Integer>> traverse(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
+        List<List<Integer>> result = new LinkedList<List<Integer>>();
 
         // base checks
         if (root == null) {
@@ -51,8 +51,9 @@ public class BTLevelOrderTraversal {
                 }
             }
 
-            // add current level to the result
-            result.add(currentLevel);
+            // append current level at the begining of the result
+            // so the prev result will be shifted to the next position
+            result.add(0, currentLevel);
         }
 
         return result;
@@ -65,7 +66,7 @@ public class BTLevelOrderTraversal {
         root.left.left = new TreeNode(9);
         root.right.left = new TreeNode(10);
         root.right.right = new TreeNode(5);
-        List<List<Integer>> result = BTLevelOrderTraversal.traverse(root);
+        List<List<Integer>> result = BTReverseLevelOrderTraversal.traverse(root);
         System.out.println("BT Level order traversal: " + result);
     }
 }
