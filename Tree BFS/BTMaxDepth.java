@@ -11,17 +11,17 @@ class TreeNode {
     }
 };
 
-//LC#111
-public class BTMinDepth {
+//LC#104
+public class BTMaxDepth {
     // O(N) time | O(N) space
     // N is the number of nodes in the tree
     // space: O(N) for result & O(N) for queue => O(N)
     public static int findDepth(TreeNode root) {
-        int minDepth = 0;
+        int maxDepth = 0;
 
         // base checks
         if (root == null) {
-            return minDepth;
+            return 0;
         }
 
         Queue<TreeNode> queue = new LinkedList<>();
@@ -30,18 +30,13 @@ public class BTMinDepth {
         int levelSize = 0;
 
         while (!queue.isEmpty()) {
-            // increment the min depth
-            minDepth++;
+            // increment the max depth
+            maxDepth++;
 
             levelSize = queue.size();
 
             for (int i = 0; i < levelSize; i++) {
                 TreeNode currentNode = queue.poll();
-
-                // check if this is a leaf node
-                if (currentNode.left == null && currentNode.right == null) {
-                    return minDepth;
-                }
 
                 // insert the children of current node in the queue
                 if (currentNode.left != null) {
@@ -54,7 +49,7 @@ public class BTMinDepth {
             }
         }
 
-        return minDepth;
+        return maxDepth;
     }
 
     public static void main(String[] args) {
@@ -63,9 +58,9 @@ public class BTMinDepth {
         root.right = new TreeNode(1);
         root.right.left = new TreeNode(10);
         root.right.right = new TreeNode(5);
-        System.out.println("Tree Minimum Depth: " + BTMinDepth.findDepth(root));
+        System.out.println("Tree Minimum Depth: " + BTMaxDepth.findDepth(root));
         root.left.left = new TreeNode(9);
         root.right.left.left = new TreeNode(11);
-        System.out.println("Tree Minimum Depth: " + BTMinDepth.findDepth(root));
+        System.out.println("Tree Minimum Depth: " + BTMaxDepth.findDepth(root));
     }
 }
