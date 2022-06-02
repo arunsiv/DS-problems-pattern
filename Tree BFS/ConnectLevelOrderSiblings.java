@@ -94,7 +94,31 @@ class ConnectLevelOrderSiblings {
                 }
                 root = root.next;
             }
+
             root = tempChild.next;
+        }
+    }
+
+    // LC #116 - only works for perfect binary tree
+    // O(N) time | O(1) space
+    // N is the number of nodes in the tree
+    public static void connectIII(TreeNodes root) {
+        TreeNodes current = root;
+        TreeNodes next = (root.left != null) ? root : null;
+
+        while (current != null && next != null) {
+            current.left.next = current.right;
+
+            if (current.next != null && current.right != null) {
+                current.right.next = current.next.left;
+            }
+
+            current = current.next;
+
+            if (current == null) {
+                current = next;
+                next = current.left;
+            }
         }
     }
 
@@ -138,6 +162,27 @@ class ConnectLevelOrderSiblings {
         root.right.left = new TreeNodes(6);
         root.right.right = new TreeNodes(7);
         ConnectLevelOrderSiblings.connectII(root);
+        System.out.println("Level order traversal using 'next' pointer: ");
+        root.printLevelOrder();
+
+        root = new TreeNodes(12);
+        root.left = new TreeNodes(7);
+        root.right = new TreeNodes(1);
+        root.left.left = new TreeNodes(9);
+        root.right.left = new TreeNodes(10);
+        root.right.right = new TreeNodes(5);
+        ConnectLevelOrderSiblings.connectIII(root);
+        System.out.println("Level order traversal using 'next' pointer: ");
+        root.printLevelOrder();
+
+        root = new TreeNodes(1);
+        root.left = new TreeNodes(2);
+        root.right = new TreeNodes(3);
+        root.left.left = new TreeNodes(4);
+        root.left.right = new TreeNodes(5);
+        root.right.left = new TreeNodes(6);
+        root.right.right = new TreeNodes(7);
+        ConnectLevelOrderSiblings.connectIII(root);
         System.out.println("Level order traversal using 'next' pointer: ");
         root.printLevelOrder();
     }
