@@ -13,7 +13,7 @@ class TreeNode {
     }
 };
 
-public class BTRightView {
+public class BTLeftView {
     // O(N) time | O(N) space
     // N is the number of nodes in the tree
     // space: O(N) for result & O(N) for queue => O(N)
@@ -37,7 +37,7 @@ public class BTRightView {
                 TreeNode currentNode = nodes.poll();
 
                 // if it is the last node of this level, add it to the result
-                if (i == levelSize - 1) {
+                if (i == 0) {
                     result.add(currentNode);
                 }
 
@@ -62,7 +62,7 @@ public class BTRightView {
         root.right.left = new TreeNode(10);
         root.right.right = new TreeNode(5);
         root.left.left.left = new TreeNode(3);
-        List<TreeNode> result = BTRightView.traverse(root);
+        List<TreeNode> result = BTLeftView.traverse(root);
         for (TreeNode node : result) {
             System.out.print(node.val + " ");
         }
