@@ -11,7 +11,7 @@ class TreeNode {
     }
 };
 
-//LC#113
+// LC#113
 public class BTFindAllPathSum {
     // O(n^2) time | O(nlogn) space
     // where n is the total number of nodes in the tree
