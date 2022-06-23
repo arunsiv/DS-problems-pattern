@@ -12,7 +12,9 @@ class TreeNode {
 public class TreeDiameter {
     private static int treeDiameter = 0;
 
-    //
+    // O(n) time | O(n) space
+    // where n is the total number of nodes in the tree
+    // space: O(n) for recurssive stack
     public static int findDiameter(TreeNode root) {
         calculateDiameter(root);
         return treeDiameter;
